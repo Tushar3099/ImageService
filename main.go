@@ -6,7 +6,9 @@ import (
 	"os"
 
 	"github.com/RetailPulse/apis"
+	"github.com/RetailPulse/modules/controller"
 	"github.com/joho/godotenv"
+	"github.com/rs/cors"
 )
 
 func main() {
@@ -19,10 +21,11 @@ func main() {
 	if !ok {
 		port = "3000"
 	}
+	controller := controller.New()
 	//registering routes
-	router := apis.NewRouter()
+	api := apis.New(controller)
 
 	//connecting to the port
 	log.Println("server is listening on port ", port)
-	log.Fatal(http.ListenAndServe(":"+port, router))
+	log.Fatal(http.ListenAndServe(":"+port, cors.Default().Handler(api.Router())).Error())
 }

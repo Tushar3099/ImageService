@@ -1,6 +1,9 @@
 package parser
 
-import "encoding/json"
+import (
+	"encoding/json"
+	"fmt"
+)
 
 type Visit struct {
 	StoreId string   `json:"store_id"`
@@ -13,11 +16,14 @@ type ParsedData struct {
 }
 
 func Parse(byts []byte) (*ParsedData, error) {
-	var data *ParsedData
-	err := json.Unmarshal(byts, data)
+	if byts == nil {
+		return nil, fmt.Errorf("bytes is nil")
+	}
+	var data ParsedData
+	err := json.Unmarshal(byts, &data)
 	if err != nil {
 		return nil, err
 	}
 
-	return data, nil
+	return &data, nil
 }

@@ -1,6 +1,6 @@
 package types
 
 type Error struct {
-	StoreId string
-	Message string
+	StoreId string `json:"store_id"`
+	Message string `json:"error"`
 }
