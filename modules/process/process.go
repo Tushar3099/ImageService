@@ -1,7 +1,6 @@
 package process
 
 import (
-	"fmt"
 	"image"
 	_ "image/jpeg"
 	_ "image/png"
@@ -37,7 +36,7 @@ func (p *Process) Execute() error {
 
 	b := img.Bounds()
 	p.Result = 2 * (b.Max.X + b.Max.Y)
-	fmt.Printf("Img Width : %v, Img Height : %v\n", b.Max.X, b.Max.Y)
+	// fmt.Printf("Img Width : %v, Img Height : %v\n", b.Max.X, b.Max.Y)
 	// fmt.Printf("Img Width : %v, Img Height : %v", img.Height, img.Width)
 	time.Sleep(time.Millisecond * 5)
 

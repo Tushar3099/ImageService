@@ -1,6 +1,8 @@
 package store
 
 import (
+	"fmt"
+
 	"github.com/RetailPulse/modules/process"
 	"github.com/RetailPulse/types"
 )
@@ -21,11 +23,12 @@ func New(id string, urls []string) *Store {
 }
 
 func (s *Store) Execute(jobCh chan<- types.Error) {
-
+	// fmt.Printf("Stor Id : %v\n", s.StoreId)
 	for _, p := range s.Processes {
 		err := p.Execute()
 		if err != nil {
-			jobCh <- types.Error{StoreId: s.StoreId, Message: err.Error()}
+			// fmt.Printf("Store : %v, Process: %v\n", s.StoreId, i)
+			jobCh <- types.Error{StoreId: s.StoreId, Message: fmt.Sprintf("Error processing url : %v, %v", p.Url, err.Error())}
 			return
 		}
 	}

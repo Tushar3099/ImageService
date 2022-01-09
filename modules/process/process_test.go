@@ -17,7 +17,7 @@ var test = []Test{
 		url: "https://www.gstatic.com/webp/gallery/1.jpg",
 	},
 	{
-		url: "https://www.gstatic.com/webp/gallery/2.jpg",
+		url: "https://www.gstatic.com/webp/galley/2.jpg",
 	},
 	{
 		url: "https://www.gstatic.com/webp/gallery/3.jpg",
@@ -33,8 +33,8 @@ func TestProcess(t *testing.T) {
 		p := New(tst.url)
 		err := p.Execute()
 		if err != nil {
-			fmt.Printf("Error found : %v", err.Error())
-			t.Fail()
+			fmt.Printf("Error found : %v\n", err.Error())
+			// t.Fail()
 			return
 		}
 		// fmt.Printf("Img Width : %v, Img Height : %v", img.Max.X, img.Max.Y)
